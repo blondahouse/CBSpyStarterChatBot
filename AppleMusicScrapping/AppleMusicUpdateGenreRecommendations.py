@@ -62,10 +62,13 @@ def write_json(dict_in, file_name):
         json.dump(dict_in, f, ensure_ascii=False)
 
 
-if __name__ == "__main__":
-    URL = "https://music.apple.com/us/room/1654814539"
-    FILENAME = "AppleMusicGenreRecommendations.json"
+def apple_genre_update():
+    url = "https://music.apple.com/us/room/1654814539"
+    filename = "AppleMusicGenreRecommendations.json"
+    dictionary = apple_music_get_genres(url)
+    # print(dictionary.keys())
+    write_json(dictionary, filename)
 
-    dictionary = apple_music_get_genres(URL)
-    print(dictionary.keys())
-    write_json(dictionary, FILENAME)
+
+if __name__ == "__main__":
+    apple_genre_update()

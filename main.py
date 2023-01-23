@@ -1,20 +1,39 @@
-from my_functions import *
-
-from random import randint
+import os
+from TicTacToe import tictactoe_play
+from Apple_music import \
+    apple_music_genre_update, \
+    apple_music_topcharts_update, \
+    apple_music_genre_recommendation, \
+    apple_music_topcharts_recommendation
+from my_functions import \
+    json_to_dict, \
+    dict_keys_menu, \
+    input_int_in_list, \
+    random_pyjoke
 
 MAX_WIDTH = 120
 
-filepath = "AppleMusicScrapping/AppleMusicGenreRecommendations.json"
-data = json_to_dict(filepath)
+# filepath = "AppleMusicScrapping/AppleMusicGenreRecommendations.json"
+while True:
+    filepath = "mainmenu.json"
+    data = json_to_dict(filepath)
+    dict_keys_menu(data, MAX_WIDTH)
+    indices = list(range(len(data.keys()) + 1))
+    menu_item = input_int_in_list(indices)
+    match menu_item:
+        case 0:
+            break
+        case 1:
+            pass
+            random_pyjoke()
+        case 2:
+            apple_music_genre_update()
+        case 3:
+            apple_music_topcharts_update()
+        case 4:
+            apple_music_genre_recommendation(MAX_WIDTH)
+        case 5:
+            apple_music_topcharts_recommendation(MAX_WIDTH)
+        case 6:
+            tictactoe_play()
 
-print_dict_keys_in_columns(data, MAX_WIDTH)
-
-print()
-
-genre = 32  # TODO change to input
-data_key = list(data.keys())[genre - 1]
-len_list = len(data[data_key])
-random_choice = str(randint(1, len_list))
-
-print(f'Your recommendation is: '
-      f'{data[data_key][random_choice]["title"]}, By {data[data_key][random_choice]["artist"]}')
