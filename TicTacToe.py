@@ -130,16 +130,16 @@ def tictactoe_play():
     while True:
         render_board(current_board, status)
         a = input(LEFT_TAB + " Your input: ")
-        if is_win or not len(available_moves):
+        if a == "exit":
+            os.system('cls')
+            break
+        elif is_win or not len(available_moves):
             current_board = list(START_BOARD)
             current_player = X_PLAYER
             available_moves = list(ALL_MOVES)
             is_win = False
             status = f'The game started, Player "{current_player[0]}" moves'
             os.system('cls')
-        elif a == "exit":
-            os.system('cls')
-            break
         else:
             try:
                 if int(a) not in available_moves:

@@ -1,9 +1,9 @@
 import json
 import re
 import time
-import requests
-
 from random import randint
+
+import requests
 from bs4 import BeautifulSoup
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
@@ -109,6 +109,8 @@ def apple_music_get_topcharts(url):
         browser.get(url)
         # Get scroll height after first time page load
         last_height = browser.execute_script("return document.body.scrollHeight")
+        # print("last_height", last_height)
+        # print(type(last_height))
         while True:
             # Scroll down to bottom
             browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -116,6 +118,7 @@ def apple_music_get_topcharts(url):
             time.sleep(2)
             # Calculate new scroll height and compare with last scroll height
             new_height = browser.execute_script("return document.body.scrollHeight")
+            # print("new_height", new_height)
             if new_height == last_height:
                 break
             last_height = new_height
