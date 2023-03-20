@@ -61,7 +61,8 @@ def write_json(dict_in, file_name):
 
 
 if __name__ == "__main__":
-    URL = "https://music.apple.com/us/browse/top-charts/dailyGlobalTopCharts/"
+    # URL = "https://music.apple.com/us/browse/top-charts/dailyGlobalTopCharts/"
+    URL = "https://music.apple.com/room/1457165493"
     FILENAME = "AppleMusicTopChartByCountry.json"
 
     dictionary = apple_music_get_topcharts(URL)
